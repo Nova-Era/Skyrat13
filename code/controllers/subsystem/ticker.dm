@@ -158,9 +158,9 @@ SUBSYSTEM_DEF(ticker)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, "<span class='boldnotice'>Welcome to [station_name()]!</span>")
-			var/discord_role_id = CONFIG_GET(discord_role_ping_id)
+			var/discord_role_id = CONFIG_GET(string/discord_role_ping_id)
 			if(discord_role_id)
-				send2chat("<@&[discord_role_ping_id]>New round starting on [SSmapping.config.map_name]! \nIf you wish to be pinged for game related stuff, ask your admins for a role!", CONFIG_GET(string/chat_announce_new_game)) // Skyrat edit -- role ping
+				send2chat("<@&[discord_role_id]>New round starting on [SSmapping.config.map_name]! \nIf you wish to be pinged for game related stuff, ask your admins for a role!", CONFIG_GET(string/chat_announce_new_game)) // Skyrat edit -- role ping
 			else
 				send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game))
 			current_state = GAME_STATE_PREGAME
