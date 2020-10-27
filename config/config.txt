@@ -525,3 +525,8 @@ FAIL2TOPIC_RULE_NAME _dd_fail2topic
 
 ## Enable automatic profiling - Byond 513.1506 and newer only.
 #AUTO_PROFILE
+
+## Discord role ID
+## This is used by the chat bot to ping users when a new round is starting.
+## Make sure to use a valid role ID!
+# DISCORD_ROLE_PING_ID 00000000000
