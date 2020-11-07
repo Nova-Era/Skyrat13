@@ -7,6 +7,10 @@
 	usr.client.holder.edit_admin_permissions()
 
 /datum/admins/proc/edit_admin_permissions(action, target, operation, page)
+	if(IsAdminAdvancedProcCall())
+		message_admins("[key_name_admin(usr)] tried to call edit_admin_permissions() via an Advanced ProcCall!")
+		log_admin("[key_name(usr)] tried to call edit_admin_permissions() via an Advanced ProcCall!")
+		return
 	if(!check_rights(R_PERMISSIONS))
 		return
 	var/list/output = list("<link rel='stylesheet' type='text/css' href='panels.css'><a href='?_src_=holder;[HrefToken()];editrightsbrowser=1'>\[Permissions\]</a>")
@@ -125,12 +129,13 @@
 	usr << browse("<!DOCTYPE html><html>[jointext(output, "")]</html>","window=editrights;size=1000x650")
 
 /datum/admins/proc/edit_rights_topic(list/href_list)
+	if(IsAdminAdvancedProcCall())
+		message_admins("[key_name_admin(usr)] tried to call edit_rights_topic() via an Advanced ProcCall!")
+		log_admin("[key_name(usr)] tried to call edit_rights_topic() via an Advanced ProcCall!")
+		return
 	if(!check_rights(R_PERMISSIONS))
 		message_admins("[key_name_admin(usr)] attempted to edit admin permissions without sufficient rights.")
 		log_admin("[key_name(usr)] attempted to edit admin permissions without sufficient rights.")
-		return
-	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin Edit blocked: Advanced ProcCall detected.</span>")
 		return
 	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/permissions)
 	permissions_assets.send(src)
@@ -201,6 +206,10 @@
 	edit_admin_permissions()
 
 /datum/admins/proc/add_admin(admin_ckey, admin_key, use_db)
+	if(IsAdminAdvancedProcCall())
+		message_admins("[key_name_admin(usr)] tried to call add_admin() via an Advanced ProcCall!")
+		log_admin("[key_name(usr)] tried to call add_admin() via an Advanced ProcCall!")
+		return
 	if(admin_ckey)
 		. = admin_ckey
 	else
@@ -235,6 +244,10 @@
 		qdel(query_add_admin_log)
 
 /datum/admins/proc/remove_admin(admin_ckey, admin_key, use_db, datum/admins/D)
+	if(IsAdminAdvancedProcCall())
+		message_admins("[key_name_admin(usr)] tried to call remove_admin() via an Advanced ProcCall!")
+		log_admin("[key_name(usr)] tried to call remove_admin() via an Advanced ProcCall!")
+		return
 	if(alert("Are you sure you want to remove [admin_ckey]?","Confirm Removal","Do it","Cancel") == "Do it")
 		GLOB.admin_datums -= admin_ckey
 		GLOB.deadmins -= admin_ckey
@@ -272,6 +285,10 @@
 	D.deactivate() //after logs so the deadmined admin can see the message.
 
 /datum/admins/proc/change_admin_rank(admin_ckey, admin_key, use_db, datum/admins/D, legacy_only)
+	if(IsAdminAdvancedProcCall())
+		message_admins("[key_name_admin(usr)] tried to call change_admin_rank() via an Advanced ProcCall!")
+		log_admin("[key_name(usr)] tried to call change_admin_rank() via an Advanced ProcCall!")
+		return
 	var/datum/admin_rank/R
 	var/list/rank_names = list()
 	if(!use_db || (use_db && !legacy_only))
@@ -346,6 +363,10 @@
 	log_admin(m2)
 
 /datum/admins/proc/change_admin_flags(admin_ckey, admin_key, use_db, datum/admins/D, legacy_only)
+	if(IsAdminAdvancedProcCall())
+		message_admins("[key_name_admin(usr)] tried to call change_admin_flags() via an Advanced ProcCall!")
+		log_admin("[key_name(usr)] tried to call change_admin_flags() via an Advanced ProcCall!")
+		return
 	var/new_flags = input_bitfield(usr, "Include permission flags<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "admin_flags", D.rank.include_rights, 350, 590, allowed_edit_list = usr.client.holder.rank.can_edit_rights)
 	if(isnull(new_flags))
 		return
@@ -414,6 +435,10 @@
 	log_admin(m2)
 
 /datum/admins/proc/remove_rank(admin_rank)
+	if(IsAdminAdvancedProcCall())
+		message_admins("[key_name_admin(usr)] tried to call remove_rank() via an Advanced ProcCall!")
+		log_admin("[key_name(usr)] tried to call remove_rank() via an Advanced ProcCall!")
+		return
 	if(!admin_rank)
 		return
 	for(var/datum/admin_rank/R in GLOB.admin_ranks)
@@ -453,6 +478,10 @@
 		log_admin(m2)
 
 /datum/admins/proc/sync_lastadminrank(admin_ckey, admin_key, datum/admins/D)
+	if(IsAdminAdvancedProcCall())
+		message_admins("[key_name_admin(usr)] tried to call sync_lastadminrank() via an Advanced ProcCall!")
+		log_admin("[key_name(usr)] tried to call sync_lastadminrank() via an Advanced ProcCall!")
+		return
 	var/sqlrank = "Player"
 	if (D)
 		sqlrank = sanitizeSQL(D.rank.name)

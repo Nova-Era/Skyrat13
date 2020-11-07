@@ -1,3 +1,5 @@
+/* new era -- someone made both sushi_... AND sushie_... types, both are fucked, they're duped,
+			  so we're commenting all of them and making our own snacks_sushi.dm 
 //////////////////////////Sushi Components///////////////////////
 
 /obj/item/reagent_containers/food/snacks/sushi_rice
@@ -85,3 +87,4 @@
 	filling_color = "#FA8072"
 	tastes = list("fish" = 1, "hot peppers" = 1)
 	foodtype = MEAT | TOXIC
+*/
