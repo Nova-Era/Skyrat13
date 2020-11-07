@@ -45,3 +45,10 @@
 
 /datum/config_entry/flag/allow_cross_server_bunker_override
 	protection = CONFIG_ENTRY_LOCKED
+
+
+/datum/config_entry/string/discord_role_ping_id //New-Era edit -- will modularize later dont yell at me
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/discord_role_ping_id/ValidateAndSet(str_val)
+	return str_val != "" && ..()
