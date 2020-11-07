@@ -24,7 +24,7 @@
 
 /obj/item/glasswork/glass_base //Welding takes 30 ticks
 	name = "Glass fodder sheet"
-	desc = "A sheet of glass set aside for glass working"
+	desc = "A sheet of glass set aside for glass working."
 	icon_state = "glass_base"
 	var/next_step = null
 	var/rod = /obj/item/glasswork/blowing_rod
@@ -61,7 +61,7 @@
 
 /obj/item/glasswork/glass_base/dish_part1
 	name = "Half chem dish sheet"
-	desc = "A sheet of glass cut in half, looks like it still needs some more cutting down"
+	desc = "A sheet of glass cut in half, looks like it still needs some more cutting down."
 	icon_state = "glass_base_half"
 	next_step = /obj/item/reagent_containers/glass/beaker/glass_dish
 
